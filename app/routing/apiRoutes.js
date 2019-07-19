@@ -1,0 +1,1 @@
+var friendsInfo = require("../data/friends");
