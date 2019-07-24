@@ -1,0 +1,29 @@
+.header {
+    font-family: 'Londrina Shadow', cursive;
+    font-size: 75px;
+    text-align: center;
+    color: black;
+}
+.survinfo {
+    text-align: center;
+    font-size: 22px;
+    margin: auto;
+    line-height: 1.25;
+    max-width: 60%;
+}
+.btn-lg{
+    background-color: rgb(219, 211, 211);
+    border-color: rgb(219, 211, 211);
+    color: black;
+}
+.website, .survqs {
+    width: 100%;
+    background-color: aliceblue;
+}
+.match {
+    text-align: center;
+    font-size: 18px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
