@@ -39,38 +39,3 @@ module.exports = function(app) {
   friendsInfo.push(req.body);
 };
 
-
-// Logic to handle survey results
-
-
-
-
-// Friend enteries
-// function apiRoute(app) {
-// app.get("api/friends", function(req, res){
-//     res.join(friendsInfo);
-// });
-// app.post('/api/friends', function(req, res){
-//     var friendNew = {
-//         name: req.body.name,
-//         photo: req.body.photo,
-//         score: []
-//     };
-//     var scroreArr = [];
-//     for(var i=0; i < req.body.score.length; i++){
-//         scroreArr.push(parseInt(req.body.score[i]))
-//     }
-//     friendNew.score = scroreArr;
-
-//     var compareScore = [];
-//     for(var i=0; i< friendsInfo.length; i++){
-//         var current = 0;
-//         for(var k=0; k<friendNew.score.length; k++){
-//             compareScore += Math.abs(friendNew.score[k] - friendsInfo[i].score)
-//         }
-//         compareScore.push(compareScore);
-//     }
-// })
-// }
-// Export to server.js
-// module.exports = apiRoute;
