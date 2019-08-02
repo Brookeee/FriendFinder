@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow&display=swap" rel="stylesheet">
     <title>Survey - Celeb Crush</title>
@@ -28,6 +31,7 @@
             <div class="form-group">
                 <label for="qone">I am a morning person.</label>
                 <select class="form-control" id="qsone">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -38,6 +42,7 @@
             <div class="form-group">
                 <label for="qtwo">I enjoy coffee.</label>
                 <select class="form-control" id="qstwo">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -48,6 +53,7 @@
             <div class="form-group">
                 <label for="qthree">How many children do you want?</label>
                 <select class="form-control" id="qsthree">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -58,6 +64,7 @@
             <div class="form-group">
                 <label for="qfour">How loud do you listen to your music</label>
                 <select class="form-control" id="qsfour">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -68,6 +75,7 @@
             <div class="form-group">
                 <label for="qfive">I enjoy adventures.</label>
                 <select class="form-control" id="qsfive">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -78,6 +86,7 @@
             <div class="form-group">
                 <label for="qsix">I consider myself a genius.</label>
                 <select class="form-control" id="qssix">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -88,6 +97,7 @@
             <div class="form-group">
                 <label for="qseven">I am a dog person.</label>
                 <select class="form-control" id="qsseven">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -98,6 +108,7 @@
             <div class="form-group">
                 <label for="qeight">I am a cat person.</label>
                 <select class="form-control" id="qseight">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -108,6 +119,7 @@
             <div class="form-group">
                 <label for="qnine">I enjoy reality TV.</label>
                 <select class="form-control" id="qsnine">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -118,6 +130,7 @@
             <div class="form-group">
                 <label for="qten">I like to travel.</label>
                 <select class="form-control" id="qsten">
+                    <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -128,68 +141,79 @@
         </form>
         <!-- Submit Button -->
         <div class="text-center">
-            <button id="submitBtn" type="submit" class="btn btn-lg">Submit Responses</button>
+            <button id="submitBtn" type="submit" class="submitting">Submit Responses</button>
         </div>
 
-        <!-- Celeb friend results -->
-        <div class="modal" id="celebfriendModal" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-header">
-                    <h6 class="modal-name"> New Celeb Friend</h6>
-                    <button type="button" class="exit" data-dismiss="modal" aria-label="Exit">
-                        <span aria-hidden="true"></span>
-                    </button>
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/friends">API Friends List</a> | <a
+                        href="https://github.com/Brookeee/FriendFinder">GitHub Repo</a></p>
+            </div>
+        </footer>
+
+        <!-- Modal -->
+        <div id="results-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title"><strong>Best Match</strong></h2>
+                    </div>
+                    <div class="modal-body">
+                        <h2 id="match-name"></h2>
+                        <img id="match-img"
+                            src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <h3 id="celebName"></h3>
-                    <img id="celebPhoto" src="#">
-                </div>
+
             </div>
         </div>
+
+        <!-- Results logic for friend finder, WIP -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.submitting').on("click", function (event) {
+                    event.preventDefault();
+                    console.log("submit button pressed");
+                });
+            })
+
+            // Friends API list logic goes here 
+
+
+
+            // User input captured and trimmed
+            var objCeleb = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                survey: [
+                    $("#qsone").val().trim(),
+                    $("#qstwo").val().trim(),
+                    $("#qsthree").val().trim(),
+                    $("#qsfour").val().trim(),
+                    $("#qsfive").val().trim(),
+                    $("#qssix").val().trim(),
+                    $("#qsseven").val().trim(),
+                    $("#qseight").val().trim(),
+                    $("#qsnine").val().trim(),
+                    $("#qsten").val().trim(),
+                ]
+            };
+            console.log(objCeleb);
+
+            $.post("/api/friends", objCeleb, function (data) {
+                // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                $("#match-name").text(data.name);
+                $("#match-img").attr("src", data.photo);
+                // Show the modal with the best match
+                $("#results-modal").modal("toggle");
+            });
+        </script>
 </body>
 
 </html>
-<!-- JQuery-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-
-<!-- Results logic for friend finder, WIP -->
-<script type="text/javascript">
-    // Submit button on click 
-    $("#submitBtn").on("click", function () {
-        event.preventDefault();
-        console.log("submit button pressed")
-
-        // Friends API list logic goes here 
-
-
-
-        // User input captured and trimmed
-        var objCeleb = {
-            name: $("#name").val().trim(),
-            photo: $("#photo").val().trim(),
-            survey: [
-                $("#qsone").val().trim(),
-                $("#qstwo").val().trim(),
-                $("#qsthree").val().trim(),
-                $("#qsfour").val().trim(),
-                $("#qsfive").val().trim(),
-                $("#qssix").val().trim(),
-                $("#qsseven").val().trim(),
-                $("#qseight").val().trim(),
-                $("#qsnine").val().trim(),
-                $("#qsten").val().trim(),
-            ]
-        };
-        console.log(objCeleb);
-    }
-
-    // Display celeb frriend result for user with picture and name
-    ,)
-
-
-    // Home button/Reset button 
-</script>
