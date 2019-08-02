@@ -11,7 +11,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 // access to CSS file
-app.use(express.static(__dirname + "public/css"));
+app.use(express.static(__dirname + "./app/public"));
 
 // Body parsing middleware 
 app.use(bodyParser.json());
