@@ -10,7 +10,7 @@ var app = express();
 // PORT 
 var PORT = process.env.PORT || 8080;
 
-// access to CSS file
+// access to HTML file
 app.use(express.static(__dirname + "./app/public"));
 
 // Body parsing middleware 
@@ -26,5 +26,5 @@ require(path.join(__dirname, "./app/routing/htmlRoutes.js"));
 
 //Listening on PORT
 app.listen(PORT, function(){
-    console.log("Listening on PORT: http://localhost:"+ PORT);
+    console.log("Listening on PORT: "+ PORT);
 });
