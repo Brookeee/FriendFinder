@@ -9,7 +9,7 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/app/public/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow&display=swap" rel="stylesheet">
     <title>Survey - Celeb Crush</title>
 </head>
@@ -30,7 +30,7 @@
             <br>
             <div class="form-group">
                 <label for="qone">I am a morning person.</label>
-                <select class="form-control" id="qsone">
+                <select class="form-control a1" id="qsone">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label for="qtwo">I enjoy coffee.</label>
-                <select class="form-control" id="qstwo">
+                <select class="form-control a2" id="qstwo">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -52,7 +52,7 @@
             </div>
             <div class="form-group">
                 <label for="qthree">How many children do you want?</label>
-                <select class="form-control" id="qsthree">
+                <select class="form-control a3" id="qsthree">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -63,7 +63,7 @@
             </div>
             <div class="form-group">
                 <label for="qfour">How loud do you listen to your music</label>
-                <select class="form-control" id="qsfour">
+                <select class="form-control a4" id="qsfour">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -74,7 +74,7 @@
             </div>
             <div class="form-group">
                 <label for="qfive">I enjoy adventures.</label>
-                <select class="form-control" id="qsfive">
+                <select class="form-control a5" id="qsfive">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -85,7 +85,7 @@
             </div>
             <div class="form-group">
                 <label for="qsix">I consider myself a genius.</label>
-                <select class="form-control" id="qssix">
+                <select class="form-control a6" id="qssix">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -96,7 +96,7 @@
             </div>
             <div class="form-group">
                 <label for="qseven">I am a dog person.</label>
-                <select class="form-control" id="qsseven">
+                <select class="form-control a7" id="qsseven">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -107,7 +107,7 @@
             </div>
             <div class="form-group">
                 <label for="qeight">I am a cat person.</label>
-                <select class="form-control" id="qseight">
+                <select class="form-control a8" id="qseight">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -118,7 +118,7 @@
             </div>
             <div class="form-group">
                 <label for="qnine">I enjoy reality TV.</label>
-                <select class="form-control" id="qsnine">
+                <select class="form-control a9" id="qsnine">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -129,7 +129,7 @@
             </div>
             <div class="form-group">
                 <label for="qten">I like to travel.</label>
-                <select class="form-control" id="qsten">
+                <select class="form-control a10" id="qsten">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -150,77 +150,66 @@
                         href="https://github.com/Brookeee/FriendFinder">GitHub Repo</a></p>
             </div>
         </footer>
-
         <!-- Modal -->
-        <div id="results" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
+        <div class="modal fade in bestMatch" id="exampleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title"><strong>Best Match</strong></h2>
+                        <h3 class="modal-title" id="exampleModalLabel"><b>Your Friend:</b></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                        <h2 id="match"></h2>
-                        <img id="matchimg" src="" alt="Image not Found" style="max-width: 350px;">
+                        <h1 class="matchName"></h1>
+                        <img class="MatchPhoto img-responsive" src="" alt="">
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
-
             </div>
         </div>
-        <script>
-            $(document).ready(function () {
-                $('.submitting').on("click", function (event) {
-                    event.preventDefault();
-                    console.log("submit button pressed");
-                });
-            })
-            function checkresults() {
-                var valid = true;
-                $(".form-control").each(function () {
-                    if ($(this).val() === "") {
-                        valid = false;
-                    }
-                });
+    </div>
 
-                $(".chosen-select").each(function () {
-                    if ($(this).val() === "") {
-                        valid = true;
-                    }
-                });
-                return valid;
-            }
-            if (checkresults()) {
-                var objCeleb = {
-                    name: $("#name").val().trim(),
-                    photo: $("#photo").val().trim(),
-                    survey: [
-                        $("#qsone").val().trim(),
-                        $("#qstwo").val().trim(),
-                        $("#qsthree").val().trim(),
-                        $("#qsfour").val().trim(),
-                        $("#qsfive").val().trim(),
-                        $("#qssix").val().trim(),
-                        $("#qsseven").val().trim(),
-                        $("#qseight").val().trim(),
-                        $("#qsnine").val().trim(),
-                        $("#qsten").val().trim(),
-                    ]
-                };
-            }
-            // console.log(objCeleb);
-            var celebRes = window.location.origin;
-            $.post(celebRes + "/api/friends", objCeleb, function (data) {
-                // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                $("#match").text(data.name);
-                $("#matchimg").attr("src", data.photo);
-                // Show the modal with the best match
-                $("#results").modal("toggle");
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.submitting').on("click", function (event) {
+                event.preventDefault();
+                // console.log("submit button pressed");
             });
-        </script>
+
+            var objCeleb = {
+                name: $("#name").val(),
+                photo: $("#photo").val(),
+                score: [
+                    $(".a1").val(),
+                    $(".a2").val(),
+                    $(".a3").val(),
+                    $(".a4").val(),
+                    $(".a5").val(),
+                    $(".a6").val(),
+                    $(".a7").val(),
+                    $(".a8").val(),
+                    $(".a9").val(),
+                    $(".a10").val(),
+                ]
+            };
+            var modal = window.location.origin;
+            $.post(modal + "/api/friends", objCeleb, function (res) { //post function for API.
+                if (res) {
+
+                    $(".matchName").text(res.name);
+                    $(".matchPhoto").attr("src", res.photo); //display modal dropdown
+                    $(".bestMatch").modal("show");
+                    // display best match information
+                }
+            })
+
+        });
+
+    </script>
 </body>
 
 </html>

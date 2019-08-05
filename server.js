@@ -1,17 +1,17 @@
 // NPM installed 7/18
 // Required NPM packages
 var express = require("express");
-var path = require("path");
+// var path = require("path");
 var bodyParser = require('body-parser');
 
 //Express
 var app = express();
 
 // PORT 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 // access to HTML file
-app.use(express.static(__dirname + "./app/public"));
+app.use(express.static(__dirname + "public/css"));
 
 // Body parsing middleware 
 app.use(bodyParser.json());
@@ -20,8 +20,8 @@ app.use(bodyParser.text());
 
 
 // Application routes
-require(path.join(__dirname, "./app/routing/apiRoutes.js"));
-require(path.join(__dirname, "./app/routing/htmlRoutes.js"));
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRoutes.js")(app);
 
 
 //Listening on PORT

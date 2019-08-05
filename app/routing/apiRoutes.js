@@ -1,42 +1,41 @@
 // Link to Friends.js data
-var friendsInfo = require("../data/friends.js");
+var friends = require("../data/friends.js");
 
 module.exports = function(app) {
   // GET route to display all celeb friend options
   app.get("/api/friends", function(req, res) {
-    res.json(friendsInfo);
+    res.json(friends);
+    console.log(friends);
   });
-  // New Celeb Friend
-  var newCeleb = req.body;
-  var scoreArr = [];
-  //   var celebCnt = 0;
-  var celebMatch = 0;
 
-  // For loop to run through celeb list
+  app.get("/api/friends", function(res, req) {
+    // New Celeb Friend
+    var newScores = req.body.score;
+    var scoreArray = [];
+    var friendCnt = 0;
+    var bestMatch = 0;
 
-  for (var i = 0; i < friendsInfo.length; i++) {
-    var diffScore = 0;
+    // For loop to run through celeb list possiblities
 
-    // Compare Celeb friends and go through scores
-    for (var k = 0; k < newCeleb.length; k++) {
-      diffScore += Math.abs(
-        parseInt(friendsInfo[i].score[k]) - parseInt(newCelebScore[k])
-      );
+    for (var i = 0; i < friends.length; i++) {
+      var totalDif = 0;
+      for (var c = 0; c < newScores.length; c++) {
+        totalDif += Math.abs(
+          parseInt(friends[i].score[c] - parseInt(newScores[c]))
+        );
+      }
+      scoreArray.push(totalDif);
     }
-    scoreArr.push(diffScore);
-  }
 
-  // Find match
-  for (var i = 0; scoreArr.length; i++) {
-    if (scoreArr[i] <= scoreArr[celebMatch]) {
-      celebMatch = i;
+    for(var i = 0; i<scoreArray.length; i++){
+      if(scoreArray[i] <= scoreArray[bestMatch]){
+        bestMatch = i; 
+      }
     }
-  }
-  // return match data
-  var fMatch = friendsInfo[celebMatch];
-  res.json(fMatch);
 
-  // Adds to friendsInfo array
+    var newBff = friends[bestMatch];
+    res.json(newBff);
 
-  friendsInfo.push(req.body);
+    friends.push(req.body);
+  });
 };
