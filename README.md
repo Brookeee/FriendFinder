@@ -4,7 +4,7 @@ A new and innovative way to find a new friend! Complete the survey to find your 
 
 Answer 10 questions to find your celeb match.
 
-Find your match today: 
+Find your match today: https://stormy-taiga-10637.herokuapp.com/
 
 Technologies Used: 
 * NodeJS
