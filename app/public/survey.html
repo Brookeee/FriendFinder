@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/app/public/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow&display=swap" rel="stylesheet">
     <title>Survey - Celeb Crush</title>
@@ -141,7 +139,9 @@
         </form>
         <!-- Submit Button -->
         <div class="text-center">
-            <button id="submitBtn" type="submit" class="submitting">Submit Responses</button>
+            <button type="button" class="btn btn-primary" id="submit" data-toggle="modal" data-target="#exampleModal">
+                Submit
+            </button>
         </div>
 
         <footer class="footer">
@@ -151,19 +151,19 @@
             </div>
         </footer>
         <!-- Modal -->
-        <div class="modal fade in bestMatch" id="exampleModal" tabindex="-1" role="dialog"
+        <div class="modal fade in celebMatch" id="exampleModal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLabel"><b>Your Friend:</b></h3>
+                        <h3 class="modal-title" id="exampleModalLabel"><b>Your Celeb Match:</b></h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <h1 class="matchName"></h1>
-                        <img class="MatchPhoto img-responsive" src="" alt="">
+                        <img class="matchPhoto img-responsive" src="" alt="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -173,9 +173,10 @@
         </div>
     </div>
 
+
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.submitting').on("click", function (event) {
+            $("#submit").on("click", function (event) {
                 event.preventDefault();
                 // console.log("submit button pressed");
             });
@@ -196,18 +197,14 @@
                     $(".a10").val(),
                 ]
             };
-            var modal = window.location.origin;
-            $.post(modal + "/api/friends", objCeleb, function (res) { //post function for API.
-                if (res) {
-
-                    $(".matchName").text(res.name);
-                    $(".matchPhoto").attr("src", res.photo); //display modal dropdown
-                    $(".bestMatch").modal("show");
-                    // display best match information
-                }
+            $.post("/api/friends", objCeleb, function (res) {
+                $(".matchName").text(res.name);
+                $(".matchPhoto").attr("src", res.photo);
+                // Show the modal with the best match
+                $("#results-modal").modal("toggle");
+                $("#results-modal").modal
             })
-
-        });
+        })
 
     </script>
 </body>

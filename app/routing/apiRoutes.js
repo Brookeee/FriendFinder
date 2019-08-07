@@ -8,7 +8,7 @@ module.exports = function(app) {
     console.log(friends);
   });
 
-  app.get("/api/friends", function(res, req) {
+  app.post("/api/friends", function(req, res) {
     // New Celeb Friend
     var newScores = req.body.score;
     var scoreArray = [];
